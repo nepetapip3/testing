@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>nepetapip3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+/* ================= BASE ================= */
+body {
+    margin: 0;
+    height: 100vh;
+    background: #000;
+    color: #fff;
+    font-family: 'Share Tech Mono', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ================= NOISE ================= */
+.noise {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    animation: noise 0.2s infinite;
+    z-index: 3;
+}
+
+@keyframes noise {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(-1px,1px); }
+    100% { transform: translate(0,0); }
+}
+
+/* ================= SNOW ================= */
+.snow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.snow::before,
+.snow::after {
+    content: "";
+    position: absolute;
+    inset: -200%;
+    background-repeat: repeat;
+}
+
+/* small fast */
+.snow::before {
+    background-image:
+        radial-gradient(1px 1px at 10% 10%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 40% 30%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.6), transparent);
+    background-size: 120px 120px;
+    animation: snowFast 14s linear infinite;
+}
+
+/* big slow */
+.snow::after {
+    background-image:
+        radial-gradient(2.5px 2.5px at 20% 20%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(3px 3px at 60% 50%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 80% 90%, rgba(255,255,255,0.5), transparent);
+    background-size: 260px 260px;
+    animation: snowSlow 28s linear infinite;
+}
+
+@keyframes snowFast {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(-80px, 400px); }
+}
+
+@keyframes snowSlow {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(100px, 600px); }
+}
+
+/* ================= TERMINAL ================= */
+.terminal {
+    position: relative;
+    padding: 50px 70px 65px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.7);
+    box-shadow:
+        0 0 15px rgba(255,255,255,0.6),
+        inset 0 0 20px rgba(255,255,255,0.05);
+    text-align: center;
+    z-index: 4;
+}
+
+/* ================= TEXT ================= */
+.nick {
+    font-size: 52px;
+    letter-spacing: 6px;
+    text-shadow: 0 0 10px #fff, 0 0 30px #fff;
+    animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+    0%,100%{opacity:1;}
+    5%{opacity:.6;}
+    10%{opacity:1;}
+    15%{opacity:.4;}
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%,50%{opacity:1;}
+    51%,100%{opacity:0;}
+}
+
+.divider {
+    width: 220px;
+    height: 1px;
+    margin: 30px auto;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,.9), transparent);
+}
+
+.status {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    opacity: .75;
+}
+
+.tags {
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin-top: 18px;
+    font-size: 16px;
+    letter-spacing: 1.6px;
+    line-height: 2.2;
+    opacity: .65;
+}
+
+/* ================= BUTTONS ================= */
+.buttons {
+    margin-top: 28px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.telegram-btn,
+.github-btn {
+    padding: 10px 28px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.6);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    color: #fff;
+    background: transparent;
+    text-decoration: none;
+    opacity: .8;
+    transition: background .25s, color .25s, box-shadow .25s;
+}
+
+.telegram-btn:hover,
+.github-btn:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 20px rgba(255,255,255,.9);
+}
+
+/* ================= EASTER ================= */
+.easter-egg {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 15px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    opacity: .25;
+    color: #aaa;
+    text-decoration: none;
+}
+
+.easter-egg:hover { opacity:.6; }
+
+/* ================= MOBILE ================= */
+@media (max-width: 600px) {
+
+    .terminal {
+        width: 90%;
+        padding: 36px 24px 48px;
+    }
+
+    .nick {
+        font-size: 38px;
+        letter-spacing: 4px;
+    }
+
+    .divider {
+        width: 180px;
+        margin: 24px auto;
+    }
+
+    .status {
+        font-size: 16px;
+    }
+
+    .tags {
+        font-size: 14px;
+        line-height: 2;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .telegram-btn,
+    .github-btn {
+        width: 100%;
+        padding: 12px 0;
+        border-radius: 16px;
+    }
+
+    .noise {
+        opacity: .4;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="snow"></div>
+<div class="noise"></div>
+
+<div class="terminal">
+    <div class="nick">nepetapip3<span class="cursor">_</span></div>
+
+    <div class="divider"></div>
+
+    <div class="status">Приветик.</div>
+
+    <div class="tags">
+        Я nepetapip3 или просто непета<br>
+        Увлекаюсь (вайб)кодингом, Arduino, прошивом телефонов...<br>
+        Люблю создавать простенькие сайты и тг ботов
+    </div>
+
+    <div class="buttons">
+        <a class="telegram-btn" href="https://t.me/nepetapip3" target="_blank">TELEGRAM</a>
+        <a class="github-btn" href="https://github.com/nepetapip3" target="_blank">GITHUB</a>
+    </div>
+
+    <a class="easter-egg" href="bigrat.jpg">:3</a>
+</div>
+
+</body>
+</html>
+
