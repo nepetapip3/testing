@@ -3,22 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="icon.png">
+<link rel="icon" type="image/png" href="icon.png">
 <title>nepetapip3 alt bio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-    --primary: #d0bcff;
-    --on-primary: #381e72;
-    --primary-container: #4f378b;
-    --surface: rgba(30,30,30,0.65);
-    --surface-container: rgba(45,45,45,0.65);
-    --text: #e6e1e5;
-    --text-secondary: #cac4d0;
-    --radius-xl: 36px;
-    --radius-lg: 28px;
+    --md-sys-color-primary: #d0bcff;
+    --md-sys-color-on-primary: #381e72;
+    --md-sys-color-primary-container: #4f378b;
+    --md-sys-color-on-primary-container: #eaddff;
+
+    --md-sys-color-surface: #141218;
+    --md-sys-color-surface-container: #1d1b20;
+    --md-sys-color-surface-container-high: #211f26;
+    --md-sys-color-outline: #49454f;
+
+    --md-sys-color-on-surface: #e6e1e5;
+    --md-sys-color-on-surface-variant: #cac4d0;
+
+    --radius-xl: 28px;
+    --radius-lg: 20px;
 }
 
 * {
@@ -33,43 +39,42 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at 20% 20%, #2a1f4f, transparent 40%),
-                radial-gradient(circle at 80% 80%, #3f2b63, transparent 40%),
-                #121212;
-    color: var(--text);
-    padding: 20px;
+    background:
+        radial-gradient(circle at 10% 20%, #2a1f4f 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, #3b2a63 0%, transparent 50%),
+        var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    padding: 24px;
 }
 
 /* Карточка */
 .card {
-    backdrop-filter: blur(30px);
-    background: var(--surface);
+    background: var(--md-sys-color-surface-container);
     border-radius: var(--radius-xl);
     padding: 48px;
     max-width: 520px;
     width: 100%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-    animation: rise 0.8s cubic-bezier(.2,.8,.2,1);
+    border: 1px solid var(--md-sys-color-outline);
+    box-shadow:
+        0px 1px 2px rgba(0,0,0,0.3),
+        0px 6px 20px rgba(0,0,0,0.4);
+    animation: rise 0.5s cubic-bezier(.2,.8,.2,1);
 }
 
 @keyframes rise {
-    from { opacity: 0; transform: translateY(40px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Аватарка */
+/* Аватар */
 .avatar {
-    width: 110px;
-    height: 110px;
+    width: 112px;
+    height: 112px;
     border-radius: 50%;
     padding: 4px;
-    background: linear-gradient(135deg, #d0bcff, #6750a4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: var(--md-sys-color-primary-container);
     margin-bottom: 24px;
-    box-shadow: 0 0 60px rgba(208,188,255,0.5);
-    animation: float 4s ease-in-out infinite;
+    box-shadow: 0 4px 20px rgba(208,188,255,0.25);
 }
 
 .avatar img {
@@ -79,47 +84,39 @@ body {
     object-fit: cover;
 }
 
-/* Плавающая анимация */
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0px); }
-}
-
+/* Тексты */
 h1 {
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .subtitle {
-    color: var(--text-secondary);
-    margin-bottom: 28px;
+    color: var(--md-sys-color-on-surface-variant);
+    margin-bottom: 32px;
+    font-weight: 500;
 }
 
 /* Секция */
 .section {
-    background: var(--surface-container);
+    background: var(--md-sys-color-surface-container-high);
     padding: 20px;
     border-radius: var(--radius-lg);
-    margin-bottom: 28px;
-    transition: 0.3s ease;
-}
-
-.section:hover {
-    background: rgba(70,70,70,0.75);
+    margin-bottom: 32px;
+    border: 1px solid var(--md-sys-color-outline);
 }
 
 .section h2 {
-    font-size: 14px;
-    color: var(--primary);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: var(--md-sys-color-primary);
     margin-bottom: 8px;
-    letter-spacing: 1px;
 }
 
 .section p {
     font-size: 15px;
-    line-height: 1.6;
-    color: var(--text-secondary);
+    line-height: 1.7;
+    color: var(--md-sys-color-on-surface-variant);
 }
 
 /* Кнопки */
@@ -132,27 +129,30 @@ h1 {
 .btn {
     flex: 1;
     padding: 14px;
-    border-radius: 100px;
-    background: var(--primary-container);
-    color: white;
+    border-radius: 999px;
+    background: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
     text-align: center;
     text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s ease;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
 }
 
 .btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(208,188,255,0.3);
-    background: var(--primary);
-    color: #000;
+    box-shadow: 0 4px 20px rgba(208,188,255,0.35);
+}
+
+.btn:active {
+    filter: brightness(0.9);
 }
 
 .footer {
-    margin-top: 30px;
-    font-size: 13px;
+    margin-top: 32px;
+    font-size: 12px;
     text-align: center;
-    color: var(--text-secondary);
+    color: var(--md-sys-color-on-surface-variant);
 }
 </style>
 </head>
@@ -183,7 +183,7 @@ h1 {
     </div>
 
     <div class="footer">
-        Material You styled • 2026
+        Pixel styled • 2026
     </div>
 
 </div>
